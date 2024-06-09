@@ -1,0 +1,150 @@
+<html>
+  <head>
+    <title>Order tracking</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/adaptiv.css') }}">
+  </head>
+  <body>
+  <div id="route-panel">
+    <div class = "route-panel_content">
+      <div class = "two_adress">
+        <span class = "adress_ab">
+          <div class = "pount_ab">A</div>
+          <input type = "text" value="{{A1}}" readonly>   
+        </span>
+        <span class = "adress_ab">
+          <div class = "pount_ab">B</div>
+          <input type = "text" value="{{B}}" readonly>
+        </span>
+      </div>
+      <form method="POST" class = "adress_ab">
+        <button type="submit">C</button>
+        <input type="text" value = "{{order.nomerzakaza}}" name="nomerzakaza" id="nomerzakaza">
+        <select id="mode">
+          <option value="DRIVING">Driving</option>
+          <option value="WALKING">Walking</option>
+          <option value="BICYCLING">Bicycling</option>
+          <option value="TRANSIT">Transit</option>
+        </select>
+      </form>
+      <nav id="gg-panel">
+        <ul class="route-card">
+          <div class = "card_info"> 
+            <li class = "name_card">Driving</li>
+            <li>Distance: {{driving_distance}}</li>
+            <li>Duration: {{HrsMinsDurationDriving}}</li>
+          </div>
+        </ul>
+        <ul class="route-card">
+          <div class = "card_info"> 
+            <li class = "name_card">Walking</li>
+            <li>Distance: {{walking_distance}}</li>
+            <li>Duration: {{HrsMinsDurationWalking}}</li>     
+          </div>
+        </ul>
+        <ul class="route-card">     
+          
+          <div class = "card_info"> 
+            <li class = "name_card">Bicycling</a>
+            <li>Distance: {{bicycling_distance}}</li>
+            <li>Duration: {{HrsMinsDurationBicycling}}</li>      
+          </div>
+        </ul>
+        <ul class="route-card">    
+          <div class = "card_info"> 
+            <li class = "name_card">Transit</li>
+            <li>Distance: {{transit_distance}}</li>
+            <li>Duration: {{HrsMinsDurationTransit}}</li>        
+          </div>
+        </ul>   
+      </nav>
+    </div>
+  </div>
+  <div id="map">  </div>
+  <img onclick="window.location.href='/account'" class = "account-icon" src="{{ url_for('static', filename='img/account.png')}}" alt="akk">
+  <script type="text/javascript">
+    var origin = {{ origin|tojson }};
+    var destination = {{ destination|tojson }};
+    var driving_distance = {{ driving_distance|tojson }};
+    var walking_distance = {{ walking_distance|tojson }};
+    var bicycling_distance = {{ bicycling_distance|tojson }};
+    var transit_distance = {{ transit_distance|tojson }};
+    let darkThemeEnabled = true;
+    let map;
+    function initMap() {
+      const directionsRenderer = new google.maps.DirectionsRenderer();
+      const directionsService = new google.maps.DirectionsService();
+      map = new google.maps.Map(document.getElementById("map"), {
+        center: origin,
+        zoom: 5,
+        zoomControl: false,
+        fstrlscreenControl: false,
+        mapTypeControl: false,
+        streetViewControl: false,
+        styles: darkMapStyles,
+        language: 'en'
+      });
+      directionsRenderer.setMap(map);
+      calcstrateAndDisplayRoute(directionsService, directionsRenderer);
+      document.getElementById("mode").addEventListener("change", () => {
+        calcstrateAndDisplayRoute(directionsService, directionsRenderer);
+      });
+    }
+    function calcstrateAndDisplayRoute(directionsService, directionsRenderer) {
+      const selectedMode = document.getElementById("mode").value;
+      directionsService
+        .route({
+          origin: origin,
+          destination: destination,
+          travelMode: google.maps.TravelMode[selectedMode],
+        })
+        .then((response) => {
+          directionsRenderer.setDirections(response);
+        })
+        .catch((e) => window.alert("Google maps has no way with this" + status));
+    }
+    window.initMap = initMap;
+    const darkMapStyles = [
+      { elementType: "geometry", stylers: [{ color: "#212121" }] },
+      { elementType: "labels.text.stroke", stylers: [{ color: "#212121" }] },
+      { elementType: "labels.text.fill", stylers: [{ color: "#ffffff" }] },
+      { featureType: "administrative", elementType: "geometry", stylers: [{ color: "#757575" }] },
+      { featureType: "poi", elementType: "geometry", stylers: [{ color: "#181818" }] },
+      { featureType: "poi", elementType: "labels.text.fill", stylers: [{ color: "#ffffff" }] },
+      { featureType: "poi", elementType: "labels.text.stroke", stylers: [{ color: "#000000" }] },
+      { featureType: "road", elementType: "geometry", stylers: [{ color: "#383838" }] },
+      { featureType: "road", elementType: "geometry.stroke", stylers: [{ color: "#212121" }] },
+      { featureType: "road", elementType: "labels.text.fill", stylers: [{ color: "#ffffff" }] },
+      { featureType: "road.highway", elementType: "geometry", stylers: [{ color: "#999999" }] },
+      { featureType: "road.highway", elementType: "geometry.stroke", stylers: [{ color: "#333333" }] },
+      { featureType: "road.highway", elementType: "labels.text.fill", stylers: [{ color: "#ffffff" }] },
+      { featureType: "transit", elementType: "geometry", stylers: [{ color: "#2f2f2f" }] },
+      { featureType: "transit.station", elementType: "labels.text.fill", stylers: [{ color: "#ffffff" }] },
+      { featureType: "water", elementType: "geometry", stylers: [{ color: "#000000" }] },
+      { featureType: "water", elementType: "labels.text.fill", stylers: [{ color: "#ffffff" }] },
+    ];
+    const lightMapStyles = [
+      { elementType: "geometry", stylers: [{ color: "#f5f5f5" }] },
+      { elementType: "labels.text.stroke", stylers: [{ color: "#f5f5f5" }] },
+      { elementType: "labels.text.fill", stylers: [{ color: "#333333" }] },
+      { featureType: "administrative", elementType: "geometry", stylers: [{ color: "#cccccc" }] },
+      { featureType: "poi", elementType: "geometry", stylers: [{ color: "#eeeeee" }] },
+      { featureType: "poi", elementType: "labels.text.fill", stylers: [{ color: "#333333" }] },
+      { featureType: "poi", elementType: "labels.text.stroke", stylers: [{ color: "#ffffff" }] },
+      { featureType: "road", elementType: "geometry", stylers: [{ color: "#ffffff" }] },
+      { featureType: "road", elementType: "geometry.stroke", stylers: [{ color: "#cccccc" }] },
+      { featureType: "road", elementType: "labels.text.fill", stylers: [{ color: "#333333" }] },
+      { featureType: "road.highway", elementType: "geometry", stylers: [{ color: "#ffffff" }] },
+      { featureType: "road.highway", elementType: "geometry.stroke", stylers: [{ color: "#cccccc" }] },
+      { featureType: "road.highway", elementType: "labels.text.fill", stylers: [{ color: "#333333" }] },
+      { featureType: "transit", elementType: "geometry", stylers: [{ color: "#eeeeee" }] },
+      { featureType: "transit.station", elementType: "labels.text.fill", stylers: [{ color: "#333333" }] },
+      { featureType: "water", elementType: "geometry", stylers: [{ color: "#b3e5fc" }] },
+      { featureType: "water", elementType: "labels.text.fill", stylers: [{ color: "#333333" }] },
+    ];  
+  </script>
+  <script src="https://maps.googleapis.com/maps/api/js?key={{ api_key }}&language=en&callback=initMap&v=weekly" defer></script>
+  </body>
+</html>

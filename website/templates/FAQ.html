@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block title %}FAQ{% endblock %}
+{% block content %}
+<div class="FAQ_cont">
+    <a>Answers to frequently asked questions</a>
+    <div class="faq_container">
+        <div class="faq_question" onclick="toggleAnswer(this)">
+            <div class="faq_question_solid">
+                <span>How can I pay for my purchases in your store?</span>
+                <div class="faq_icon">
+                    <img src="{{ url_for('static', filename='img/close.png')}}" class="faq_icon_image">
+                </div>
+            </div>
+            <div class="faq_answer">
+                <p>By placing an order on our website, you can pay online. Be careful! We do not accept payment by transfer to a card during the checkout process.</p>
+            </div>
+        </div>
+        <div class="faq_question" onclick="toggleAnswer(this)">
+            <div class="faq_question_solid">
+                <span>How soon will I receive my order?</span>
+                <div class="faq_icon">
+                    <img src="{{ url_for('static', filename='img/close.png')}}" class="faq_icon_image">
+                </div>
+            </div>
+            <div class="faq_answer">
+                <p>It all depends on your location. All orders are shipped within a few days after payment of the order.
+                    *If you order an individual product (game sleeve), the delivery time may be extended.</p>
+            </div>
+        </div>
+        <div class="faq_question" onclick="toggleAnswer(this)">
+            <div class="faq_question_solid">
+                <span>How can I track my order?</span>
+                <div class="faq_icon">
+                    <img src="{{ url_for('static', filename='img/close.png')}}" class="faq_icon_image">
+                </div>
+            </div>
+            <div class="faq_answer">
+                <p>We will send an order confirmation to your email with delivery information and tracking number. You can also track your order on our website.</p>
+            </div>
+        </div>
+        <div class="faq_question" onclick="toggleAnswer(this)">
+            <div class="faq_question_solid">
+                <span>How do I contact support?</span>
+                <div class="faq_icon">
+                    <img src="{{ url_for('static', filename='img/close.png')}}" class="faq_icon_image">
+                </div>
+            </div>
+            <div class="faq_answer">
+                <p>If you have additional questions about the product, you can contact TG for more information.</p>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function toggleAnswer(element) {
+        const question = element.closest('.faq_question');
+        question.classList.toggle('expanded');
+    }
+</script>
+{% endblock %}

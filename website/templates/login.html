@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Login{% endblock %}
+{% block content %}
+  <div class="log_sign_main_conteiner">
+    <form method="POST" class="log_reg_box">
+      <div class = "log_reg_name">
+        <span class = "active_log_reg_name" style = "padding-left: 0;" onclick="window.location.href='/login'">Login</span>
+        <span class = "noneAtive_log_reg_name" onclick="window.location.href='/sign_up'">Sign up</span>
+      </div>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        placeholder="Enter email"
+      />
+      <input
+        type="password"
+        id="password"
+        name="password"
+        placeholder="Enter password"
+      />
+      <div class = "remember_cont">
+        <input type="checkbox" name="remember">
+        <span>Remember me</span>
+      </div>
+      <div class = "submit">
+        <button type="submit" class="main_button" style = "width: 100%;">Click</button>
+        <a onclick="window.location.href='/forgot_password'">Forgot your password?</a>
+    </div>
+    </form>
+  </div>
+{% endblock %}

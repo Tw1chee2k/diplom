@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %}Profile{% endblock %}
+{% block content %}
+<div class = "account_cont">
+    <div class = "privetstvie_cont">
+        <a>Welcome, {{user.nickname}}</a>
+    </div>
+    <div class = "buttons_acount_cont">
+        <div class = "first_column_cont">
+            <button class = "button_one" onclick="window.location.href='/profile/common'" type="" class = "">
+                <img src="{{ url_for('static', filename='img/profile.png')}}"  alt="">
+                <span>Profile</span>
+                <span style = "font-size: 20px;">></span>
+            </button>
+            <button class = "blue_buttom" onclick="window.location.href='/'" type="" class = "">
+                <span style = "font-size: 20px;">+</span>
+                <span>Watch products</span>
+            </button>
+
+            <button  class = "button_two" style = "" onclick="window.location.href='/profile/orders'" type="" class = "">
+                <img src="{{ url_for('static', filename='img/orders.png')}}"  alt="">
+                <span>Orders</span>
+                <span style = "font-size: 20px;">></span>
+            </button>   
+        </div>
+        <div class = "second_column_cont">
+            <button class = "acounts_button_mes" style = "height: 50px;" onclick="window.location.href=''" type="" disabled >
+                <img src="{{ url_for('static', filename='img/mesb.png')}}"  alt="">
+                <span>Messages</span>
+                <img src="{{ url_for('static', filename='img/arrowdown.png')}}" style = "width: 25px; height: auto;" alt="">
+            </button>
+            <div class = "message_cont">
+                {% if message %}
+                    {% for row in message %}
+                    <div class = "mes">
+                        <div class = "time_mes">{{row.created_at}}</div>
+                    {%if row.category == False%}
+                        <div class = "text_mes" style = "color:red;">{{row.text}}</div>
+                    {%else%}
+                        <div class = "text_mes" style = "color:#00ca00;">{{row.text}}</div>
+                    {%endif%}  
+                    </div>
+                    {%endfor%}
+                {%else%} 
+                <div class = "mes">
+                    <a class = "">No messages</a>
+                </div>
+                {%endif%} 
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

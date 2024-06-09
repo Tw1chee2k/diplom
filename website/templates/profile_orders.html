@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% block title %}Orders{% endblock %}
+{% block content %}
+<div class="profile_main_contener">
+    <nav>
+        <button class="toggle-button">Close panel</button>
+        <ul>
+            <li onclick="window.location.href='/profile/common'">General</li>
+            <li onclick="window.location.href='/profile/password'">Password</li>
+            <li class="active_li" onclick="window.location.href='/profile/orders'">Orders</li>
+            <li onclick="window.location.href='/logout'">Log out</li>
+        </ul>
+    </nav>
+    <div class="panel"> 
+        {% if order_dict %}
+        {% for nomerzakaza, orders in order_dict.items() %}
+            <div class="orders_card">
+                <div class="first_floar_kard">
+                    {%if type[nomerzakaza] == 'Delivery across the RB to the branch (Evropochta)'%}
+                    <div class="first_floar_kard_left">
+                        <div class="adress_order_cont">
+                            <div>{{ country[nomerzakaza] }}</div>
+                            <div>, {{ city[nomerzakaza] }}</div>
+                        </div>
+                        <div class="dostavka_time">{{ type[nomerzakaza] }}</div>
+                        <div class="dostavka_time">Receiving point: <span style = "color: white;">№{{ receiving_point[nomerzakaza].number }} {{ receiving_point[nomerzakaza].street }}</span></div>
+                        <div class="dostavka_time">Recipient: <span style = "color: white;">{{ fio[nomerzakaza] }}</span></div>
+                    </div>
+                    {% else %}
+                    <div class="first_floar_kard_left">
+                        <div class="adress_order_cont">
+                            <div>{{ country[nomerzakaza] }}</div>
+                            <div>, {{ city[nomerzakaza] }}</div>
+                            <div>&nbsp;{{ street[nomerzakaza] }} </div>
+                            <div>&nbsp;{{ house[nomerzakaza] }},</div>
+                            <div>&nbsp;{{ flat[nomerzakaza] }}</div>
+                        </div>
+                        <div class="dostavka_time">{{ type[nomerzakaza] }}</div>
+                        <div class="dostavka_time">Recipient: <span style = "color: white;">{{ fio[nomerzakaza] }}</span></div>
+                    </div>
+                    {% endif %}
+                    <div class="first_floar_kard_right">
+                        <div class="nomer_order_cont">
+                            Order cod: {{ nomerzakaza }}
+                        </div>
+                    </div>
+                </div>
+                <div class="second_floar_kard">
+                    <div class="scroll_cont">
+                        {% for order in orders %}  
+                            <div class="image_container">
+                                <img class="product_image" src="{{ url_for('static', filename='img/' + order.tovar.img_name + '.png') }}" alt="img">
+                                <div class="quantity">{{ order.tovar_quantity }}</div>
+                                <div class="price">{{ order.price }}$</div> 
+                            </div>  
+                        {% endfor %}
+                    </div>  
+                </div>
+                <div class="therth_floar_kard">
+                    {% if status[nomerzakaza] == 'Cancelled' %}
+                        <div class="status" style = "color: red;">{{ status[nomerzakaza] }}</div>
+                    {% else %}
+                        <div class="status">{{ status[nomerzakaza] }}</div>
+                    {% endif %}
+                    <div class="order_prices">Delivery: {{order_del}}$</div>
+                    <div class="order_prices">The final price: {{ (order_totals[nomerzakaza] + order_del)|round(2) }}$</div>
+                    <div class="nomer_order_cont">
+                        {%if track_number[nomerzakaza] == None%}         
+                        {%else%}
+                            Track number: <span style = "color:#28cbff; " title="The track code will appear when the order is in the mail center">{{ track_number[nomerzakaza] }}</span>
+                        {%endif%}
+                    </div>
+                </div>
+                <div class="fourth_floar_kard">
+                    <form action="/profile/orders" method="POST">
+                        <input type="hidden" name="nomerzakaza" value="{{ nomerzakaza }}">
+                        <button type="submit" class="blue_buttom">Cancel order</button>
+                    </form>
+                    <a href="https://evropochta.by/" target = "_blank" class="blue_buttom">Track order</a>
+                </div>
+            </div>
+        {% endfor %}
+        {% else %}
+            <div class = "no_orders_cont">
+                <p class = "no_orders_text">NO ORDERS</p>
+                <p>add the product to the cart, then place an order</p>
+            </div>  
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+

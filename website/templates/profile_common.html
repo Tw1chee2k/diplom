@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}General{% endblock %}
+{% block content %}
+<div class="profile_main_contener">
+    <nav>
+        <button class="toggle-button">Close panel</button>
+        <ul>
+            <li class="active_li" onclick="window.location.href='/profile/common'">General</li>
+            <li onclick="window.location.href='/profile/password'">Password</li>
+            <li onclick="window.location.href='/profile/orders'">Orders</li>
+            <li onclick="window.location.href='/logout'">Log out</li>
+        </ul>
+    </nav>
+    <div class="panel">
+        <table>
+            <tr>
+                <td>User type</td>
+                <td><input type="text" placeholder="{{user.type}}" disabled></td>
+            </tr>
+            <tr>
+                <td>User name</td>
+                <td><input type="text" placeholder="{{user.nickname}}" disabled></td>
+            </tr>
+            <tr>
+                <td>E-mail</td>
+                <td><input type="text" placeholder="{{user.email}}" disabled></td>
+            </tr>
+        </table>
+    </div>
+</div>
+{% endblock %}
+

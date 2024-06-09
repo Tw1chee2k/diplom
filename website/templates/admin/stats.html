@@ -1,0 +1,44 @@
+{% extends 'admin/master.html' %}
+{% block body %}
+<div class="container" style = "padding-top: 30px;">
+    <table class="table">
+        <tbody>
+            <tr>
+                <td>number of users</td>
+                <td>{{ user_data }}</td>
+            </tr>
+            <tr>
+                <td>number of comments</td>
+                <td>{{ comment_data }}</td>
+            </tr>
+            <tr>
+                <td>number of sklads</td>
+                <td>{{ sklad_data }}</td>
+            </tr>
+            <tr>
+                <td>number of tovars</td>
+                <td>{{ tovar_data }}</td>
+            </tr>
+            <tr>
+                <td>the number of items in the cart</td>
+                <td>{{ cart_data }}</td>
+            </tr>
+            <tr>
+                <td>number of orders</td>
+                <td>{{ order_data }}</td>
+            </tr>
+            <tr>
+                <td>number of points</td>
+                <td>{{ point_data }}</td>
+            </tr>
+            <tr>
+                <td>number of messages</td>
+                <td>{{ message_data }}</td>
+            </tr>
+            <tr>
+                <td>number of img files</td>
+                <td>{{ num_images }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>{% endblock %}

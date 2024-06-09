@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap"/>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/adaptiv.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/logo.png')}}">
+    <title>{% block title %}Base{% endblock %}</title>
+  </head>
+  <body>
+    <header class="fixed-header">
+      <div class="header-content">
+          <div class="left-content">
+              <nav>
+                  <ul>    
+                      <li> 
+                          <a id="menu-button">
+                              <img src="{{ url_for('static', filename='img/menu.png')}}" alt="">
+                          </a>
+                      </li> 
+                      <li onclick="window.location.href='/'"> 
+                          <img id="logo" src="{{ url_for('static', filename='img/logo.png')}}" alt="logo">
+                      </li>
+                  </ul>
+                </nav>
+            </div>
+            <div class="center-content dropdown-content">
+              <nav>
+                  <ul>    
+                      <li onclick="window.location.href='/account'">
+                          {% if user.is_authenticated %}
+                              <a>{{ user.nickname }}</a> 
+                          {% else %}
+                              <a>Account</a> 
+                          {% endif %}
+                      </li>
+                      <li id="catalogLink">
+                          <a>Catalog</a>
+                      </li>
+                      <li>
+                          <a href="https://t.me/+wyE9yJueXZw1ZmFi" target="_blank">Support</a>
+                      </li>
+                      <li onclick="window.location.href='/faq'">
+                          <a>FAQ</a>
+                      </li>
+                  </ul>
+              </nav>
+          </div>
+          <div class="right-content">
+              <nav>
+                  <ul>
+                      <li onclick="window.location.href='/cart'">
+                          <div class="count_cont">
+                              <img src="{{ url_for('static', filename='img/cart.png')}}" alt="Cart" class="cart-image">
+                              {% if items_cart %}
+                                  <div class="item_count">{{ items_cart }}</div>
+                              {% endif %}
+                          </div>
+                      </li>
+                  </ul>
+              </nav>
+          </div>
+      </div>
+  </header>
+    <main>
+      {% with messages = get_flashed_messages(with_categories=true) %} 
+        {% if messages %}
+          {% for category, message in messages %}
+            <div class="alert {% if category == 'error' %}alert-danger{% else %}alert-success{% endif %} alert-dismissable fade show custom-alert" role="alert">
+              {{ message }}
+            </div>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+      <div class="cont" style = "width: 100%;">
+        {% block content %} 
+        {% endblock %}
+      </div>
+        {% block javascript %} 
+          <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+        {% endblock %}
+        </main>
+        <footer>
+          <div class = "fot_cont_text">
+            <div onclick="window.location.href='/privacy'">Privacy policy</div>
+            <div onclick="window.location.href='/offer'">The offer agreement</div>
+            <div onclick="window.location.href='/info'">Additional information</div>
+        </div>
+        <div class = "fot_cont_img">
+          <a href="https://t.me/Tw1_TV" target="_blank">
+            <img src="{{ url_for('static', filename='img/telegram.png')}}" alt="">
+          </a>
+          <a href="https://www.youtube.com/channel/UCBsJKKsALtclr1GFcGkJn2A" target="_blank">
+            <img src="{{ url_for('static', filename='img/youtube.png')}}" alt="">
+          </a>
+          <a href="https://www.twitch.tv/mr_tw1" target="_blank">
+            <img src="{{ url_for('static', filename='img/twitch.png')}}" alt="">
+          </a>
+        </div>
+      </footer>
+  </body>
+</html>

@@ -1,0 +1,676 @@
+@media (max-width: 1200px) {
+/*catalog*/
+  .wrap_products{
+    width: 800px;
+  }
+  .spisok_tovarov_cont .card {
+    width: 240px;
+    height: 150px;
+    padding: 15px 0;
+  }
+
+  .spisok_tovarov_cont .card img {
+    width: 100%;
+    height: 150px;
+  }
+/*catalog end*/
+/*product */
+.product_main_contener {  
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.product_page {  
+  margin-top: 60px;
+}
+
+.img_product_cont {
+  margin: 0 auto;
+  width: 500px; 
+  height: auto;  
+}
+
+.mainIMG_prod{
+  padding: 0;
+  width: 500px; 
+}
+
+.thumbnailIMG_prod{
+  max-width: 500px; 
+  overflow-x: auto; 
+  white-space: nowrap; 
+  justify-content: flex-start; 
+  flex-wrap: nowrap;
+}
+
+.comments_cont{
+  width: 500px;
+  margin: 0 auto;
+  margin-top: 40px;
+  padding: 20px 5px;
+  justify-content: center;
+  text-align: right;
+}
+
+.comments_cont form textarea{
+  padding: 0;
+  padding: 15px 0;
+  width: 500px;  
+}
+
+.comments_cont form button{
+  width: 200px;
+  margin-bottom: 30px;
+}
+/*product end*/
+
+
+
+/*basket*/
+.basket_main_contener {
+  flex-direction: column;
+  margin: 0 auto;  
+  margin-top: 80px; 
+}
+
+.basket_products_cont {
+  max-width: 500px;
+  padding: 0;
+  margin: 0 auto;   
+  order: 1;
+  margin-bottom: 70px;
+}
+
+.create_order_cont {
+  padding: 0;
+}
+
+
+
+.create_order_cont {
+  max-width: 500px;
+  padding: 0;  
+  margin: 0 auto;  
+  order: 2;
+}
+/*basket end*/
+
+
+}
+
+
+@media (max-width: 1100px) {
+/*catalog*/
+
+/*catalog end*/
+
+/*account*/
+
+.account_cont .privetstvie_cont{
+  width: 670px;
+}
+
+.account_cont .buttons_acount_cont{
+  flex-direction: column;
+  padding-top: 60px;
+  width: auto;
+  margin: 0 auto;
+}
+
+.account_cont .buttons_acount_cont .first_column_cont{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  padding-right: 0;
+}
+
+
+.account_cont .buttons_acount_cont .button_one{
+  width: 500px;
+  height: 70px;
+}
+
+.account_cont .buttons_acount_cont .button_one img{
+  width: 35px;
+  height: 35px;
+}
+
+
+.account_cont .buttons_acount_cont .button_two{
+  width: 500px;
+  height: 70px;
+}
+
+.account_cont .buttons_acount_cont .button_two img{
+  width: 35px;
+  height: 35px;
+}
+
+.buttons_acount_cont .first_column_cont{
+  margin: 0 auto;
+  order: 2;
+  margin-top: 30px;
+}
+
+.account_cont .buttons_acount_cont .acounts_button_mes{
+  width: 500px;
+  height: 70px;
+}
+
+.message_cont{
+  width: 500px;
+  height: auto;
+  max-height: 280px; 
+  overflow-y: auto; 
+}
+/*account end*/
+
+/*profile*/
+.toggle-button {
+  display: block;
+}  
+
+
+
+
+/*profile end*/
+
+}
+
+@media (max-width: 900px) {
+
+/*catalog */
+
+/*catalog end*/
+
+/*product */
+
+/*product end*/
+
+
+
+
+}
+
+@media (max-width: 830px){ 
+/*catalog */ 
+  .wrap_products{
+    width: 670px;
+    margin-top: 10px;
+  }
+  .spisok_tovarov_cont .card {
+    width: 180px;
+    height: 120px;
+    padding: 15px 0;
+  }
+
+  .spisok_tovarov_cont .card img {
+    width: 100%;
+    height: 120px;
+  }
+/*catalog end*/
+
+/*profile*/
+.orders_card {
+  width: 500px;
+  height: auto;
+  margin: 0 auto;
+  margin-bottom: 50px;
+  border-radius: 5px;
+}
+
+
+.first_floar_kard{
+  flex-direction: column;
+}
+
+.fourth_floar_kard{
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+}
+
+.nomer_order_cont{
+  padding-top: 10px;
+  text-align: left;
+  font-size: 14px;
+}
+
+/*profile end*/
+}
+
+@media (max-width: 670px){  
+/*header*/
+
+.header-content{
+  font-size: 15px;
+}
+.header-content .left-content nav ul li:first-child {
+  display: block;
+}
+
+#menu-button {
+  display: block;
+}
+
+.center-content {
+  display: none; 
+  position: absolute;
+  top: 99%; 
+  left: 0;
+  height: auto;
+  width: 100%;
+  background: #000; 
+  padding: 0 20px;
+  z-index: 999;
+  transition: opacity 0.5s ease; 
+}
+
+.header-content .center-content nav ul {
+  display: flex; 
+  flex-direction: column; 
+}
+
+.header-content .center-content nav ul li {
+  margin: 5px 0;
+  cursor: pointer;  
+}
+
+.dropdown-content.show {
+  display: flex;
+  margin: 0;
+  flex-direction: column; 
+  padding: 10px 5px ;
+}
+
+
+#dots{
+  display: none;
+}
+
+
+/*header end*/
+  
+/*footer */
+footer {
+  flex-direction: column;
+  text-align: center;
+  height: auto;
+  position: relative;
+}
+.fot_cont_text{
+  display: flex; 
+  flex-direction: column; 
+  gap: 10px;
+  margin: 15px;
+  padding-left: 0px;
+}
+.fot_cont_text div{
+  padding: 5px;
+}
+.fot_cont_img{
+  display: flex;
+  gap: 10px;
+  padding-right: 0px;
+}
+.fot_cont_img a{
+  padding: 10px;
+}
+/*footer end*/
+
+/*catalog*/
+  #type_products {
+    justify-content: flex-start;
+    margin: 0 auto;
+    flex-wrap: nowrap;
+  }
+  .type img{
+    width: 50px; 
+    height: 50px;
+    margin: 5px;
+  }
+
+  .wrap_products{
+    width: 100%;
+    margin-top: 10px;
+  }
+  
+  .spisok_tovarov_cont .card {
+    width: 170px;
+    height: 120px;
+    padding: 15px 0;
+  }
+
+  .spisok_tovarov_cont .card img {
+    width: 100%;
+    height: 120px;
+  }
+  .spisok_tovarov_cont .description {
+    padding: 5px 0;
+    font-size: 15px;
+    text-align: center;
+  }
+/*catalog end*/
+/*prodyct*/
+.product_page {  
+  margin-top: 60px;
+}
+
+.img_product_cont {
+  width: 300px; 
+  height: auto;  
+}
+
+.mainIMG_prod{
+  padding: 0;
+  width: 300px; 
+}
+
+.thumbnailIMG_prod{
+  max-width: 300px; 
+  overflow-x: auto; 
+  white-space: nowrap; 
+  justify-content: flex-start; 
+  flex-wrap: nowrap;
+}
+
+.thumbnailIMG_prod img {
+  width: 120px; 
+  margin-right: 10px;
+  margin-top: 10px;
+
+}
+
+.cont_info_prodyct {
+  padding: 20px 5px;
+  width: 300px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+}
+
+.comments_cont{
+  width: 300px;
+  margin: 0 auto;
+  margin-top: 40px;
+  padding: 20px 5px;
+  justify-content: center;
+  text-align: right;
+}
+
+.comments_cont form textarea{
+  padding: 0;
+  padding: 15px 0;
+  width: 300px;  
+}
+
+.comments_cont form button{
+  width: 300px;
+  margin-bottom: 30px;
+}
+
+/*prodyct end*/
+
+/*account */
+
+.account_cont .privetstvie_cont{
+  width: 100%;
+}
+
+/*account end*/
+/*profile */
+  .profile_main_contener{
+
+    padding-top: 100px;
+
+  }
+
+/*profile end*/
+}
+
+@media (max-width: 550px) {
+/*basket*/
+.basket_products_cont {
+  width: 320px;
+  padding: 0;
+  margin: 0 auto;   
+  order: 1;
+  margin-bottom: 70px;
+}
+
+.info_cont_about_tavar{
+  flex-direction: column;
+}
+
+.info_cont_about_tavar img{
+  margin-bottom: 10px;
+}
+
+.cont_regstr_count{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+}
+
+.create_order_cont {
+  width: 320px;
+  padding: 0;  
+  margin: 0 auto;  
+  order: 2;
+}
+/*basket end*/
+
+/*account*/
+.account_cont .privetstvie_cont{
+  width: 100%;
+}
+
+
+.account_cont .buttons_acount_cont .first_column_cont{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  padding-right: 0;
+}
+
+
+.account_cont .buttons_acount_cont .button_one{
+  width: 300px;
+  height: 70px;
+}
+
+.account_cont .buttons_acount_cont .button_one img{
+  width: 35px;
+  height: 35px;
+}
+
+
+.account_cont .buttons_acount_cont .button_two{
+  width: 300px;
+  height: 70px;
+}
+
+.account_cont .buttons_acount_cont .button_two img{
+  width: 35px;
+  height: 35px;
+}
+
+.buttons_acount_cont .first_column_cont{
+  margin: 0 auto;
+  order: 2;
+  margin-top: 30px;
+}
+
+.account_cont .buttons_acount_cont .acounts_button_mes{
+  width: 300px;
+  height: 70px;
+}
+
+.message_cont{
+  width: 300px;
+  height: auto;
+  max-height: 280px; 
+  overflow-y: auto; 
+}
+/*account end*/
+
+/*profile*/
+.panel table{
+  margin: 0 auto;
+  width: 300px;
+}
+
+.orders_card {
+  width: 300px;
+  height: auto;
+  margin: 0 auto;
+  margin-bottom: 50px;
+  border-radius: 5px;
+}
+
+
+.first_floar_kard{
+  flex-direction: column;
+}
+
+.fourth_floar_kard{
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+}
+
+.nomer_order_cont{
+  padding-top: 10px;
+  text-align: left;
+  font-size: 14px;
+}
+
+
+/*profile end*/
+}
+
+@media (max-width: 390px) {
+/*catalog*/
+  .wrap_products{
+    width: 100%;
+    margin-top: 10px;
+  }
+  
+  .spisok_tovarov_cont .card {
+    width: 150px;
+    height: 110px;
+    padding: 15px 0;
+  }
+
+  .spisok_tovarov_cont .card img {
+    width: 100%;
+    height: 110px;
+  }
+  .spisok_tovarov_cont .description {
+    padding: 5px 0;
+    font-size: 15px;
+    text-align: center;
+  }
+/*catalog end*/
+
+/*prodyct*/
+  .product_page {  
+    margin-top: 60px;
+  }
+
+  .img_product_cont {
+    width: 300px; 
+    height: auto;  
+  }
+
+  .mainIMG_prod{
+    padding: 0;
+    width: 300px; 
+  }
+
+  .thumbnailIMG_prod{
+    max-width: 300px; 
+    overflow-x: auto; 
+    white-space: nowrap; 
+    justify-content: flex-start; 
+    flex-wrap: nowrap;
+  }
+
+  .thumbnailIMG_prod img {
+    width: 120px; 
+    margin-right: 10px;
+    margin-top: 10px;
+
+  }
+
+  .cont_info_prodyct {
+    padding: 20px 5px;
+    width: 300px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+  }
+
+  .comments_cont{
+    width: 300px;
+    margin: 0 auto;
+    margin-top: 40px;
+    padding: 20px 5px;
+    justify-content: center;
+    text-align: right;
+  }
+
+  .comments_cont form textarea{
+    padding: 0;
+    padding: 15px 0;
+    width: 300px;  
+  }
+
+  .comments_cont form button{
+    width: 300px;
+    margin-bottom: 30px;
+  }
+
+/*prodyct end*/
+
+/*profile*/
+
+.orders_card {
+
+  width: 250px;
+  height: auto;
+  margin: 0 auto;
+  margin-bottom: 50px;
+  border-radius: 5px;
+}
+
+
+.first_floar_kard{
+  flex-direction: column;
+}
+
+.fourth_floar_kard{
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+}
+
+.nomer_order_cont{
+  padding-top: 10px;
+  text-align: left;
+  font-size: 14px;
+}
+
+/*profile end*/
+}
+
+
+

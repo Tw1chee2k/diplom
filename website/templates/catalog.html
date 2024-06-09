@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block title %}Tw1{% endblock %}
+{% block content %}
+      <div id="video_container">
+        <video autoplay loop muted>
+          <source src="{{ url_for('static', filename='video/promo.mp4') }}" type="video/mp4">
+        </video>
+        <div class = "fraza_catalog">
+          You'll never turn things around if you're not willing to sacrifice everything...
+        </div>
+        <div class = "pod_fraza_catalog">
+          A new collection of play mats is available below!
+        </div>
+          <a href="#type_products" class="scroll-link">
+            <button class="blue_buttom">Go to the product</button>
+          </a>
+      </div>
+      <div id="type_products">
+        <div class="type">
+            <img src="{{ url_for('static', filename='img/Tw1_mat_blue.png')}}" alt="Tw1_mat">
+            <div style = "color: #28cbff; ">Play mats</div>
+        </div>
+        <div class="type">
+            <img src="{{ url_for('static', filename='img/Tw1_tsh.png')}}" alt="Tw1_tsh">
+            <div>Clothes</div>
+        </div>
+        <div class="type">
+            <img src="{{ url_for('static', filename='img/Tw1_pc.png')}}" alt="Tw1_pc">
+            <div>Gaming PCs</div>
+        </div>
+        <div class="type">
+            <img src="{{ url_for('static', filename='img/Tw1_dev.png')}}" alt="Tw1_dev">
+            <div>Devices</div>
+        </div>
+        <div class="type">
+            <img src="{{ url_for('static', filename='img/Tw1_aks.png')}}" alt="Tw1_aks">
+            <div>Accessories</div>
+        </div>
+    </div>
+    <div class = "wrap_products">
+      {% for tovar in tovar_list %}
+      <div class="spisok_tovarov_cont">
+        <div class="card">
+          <a href="{{ url_for('views.product', name=tovar.name) }}">
+            {% if tovar.name == 'Samurai Large'%}
+              <img src="{{ url_for('static', filename='img/' + tovar.img_name + '.png') }}" style = "  width: 86%; " alt="{{ tovar.name }}">
+            {% else %}
+              <img src="{{ url_for('static', filename='img/' + tovar.img_name + '.png') }}" alt="{{ tovar.name }}">
+            {% endif %}
+          </a>
+        </div>
+        <div class="description">
+          <span>{{ tovar.name }} 
+            {% if tovar.status == 'Soon'%}
+              <span class="new">new</span> 
+            {% else %}
+            {% endif %}
+          </span>
+          {% if tovar.status == 'Soon'%}
+            <div class="status" style = "color: white;">{{ tovar.status }}</div>
+          {% else %}
+            <div class="status">{{ tovar.status }}</div>
+          {% endif %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+{% endblock %}

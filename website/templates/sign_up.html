@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Registration{% endblock %}
+{% block content %}
+  <div class="log_sign_main_conteiner">
+    <form method="POST" class="log_reg_box">
+      <div class = "log_reg_name">
+        <span class = "noneAtive_log_reg_name" onclick="window.location.href='/login'">Login</span>
+        <span class = "active_log_reg_name"  onclick="window.location.href='/sign_up'">Sign up</span>
+      </div>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        placeholder="Enter email"
+      />
+      <input
+        type="text"
+        id="nickname"
+        name="nickname"
+        placeholder="Enter first name"
+      />
+      <input
+        type="password"
+        id="password1"
+        name="password1"
+        placeholder="Enter password"
+      />
+      <input
+        type="password"
+        id="password2"
+        name="password2"
+        placeholder="Confirm password"
+      />
+      <div class = "submit">
+        <button type="submit" class="main_button" style = "width: 100%;">Create</button>
+      </div>
+    </form>
+  </div>
+{% endblock %}

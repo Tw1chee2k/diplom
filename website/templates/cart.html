@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+{% block title %}Cart{% endblock %}
+{% block content %}
+<div class = "basket_main_contener"> 
+    <div class = "basket_products_cont" style = "">
+        <div class = "product_name_text">Cart</div>
+        <hr> 
+        {% if items %}
+        <ul class="list_group">
+            {% for item in items %}
+                <li class="list_group_product">
+                    <div class="cont_cards_tovari">
+                        <div class="info_cont_about_tavar">
+                            <img src="{{ url_for('static', filename='img/' + item.tovar.img_name + '.png') }}" alt="{{ item.tovar_name }}">
+                            <div class="pr_name_tovar">
+                                <div>{{ item.tovar_name }}</div>
+                                <input id="price-{{ item.id }}" type="text" value="{{ item.price }}$" readonly>         
+                            </div>
+                        </div>
+                        <div class="cont_regstr_count">
+                            <button type="button" onClick="decreaseQuantity({{ item.id }})" class="busket_button_minus">-</button>
+                            <input id="kol-{{ item.id }}" type="text" value="{{ item.quantity }}" readonly>         
+                            <button type="button" onClick="increaseQuantity({{ item.id }})" class="busket_button_plus">+</button>
+                        </div> 
+                        <button class="busket_delete_button" type="button" onClick="deleteItem({{ item.id }})">×</button>
+                    </div>  
+                </li>
+                <hr>
+            {% endfor %}
+        </ul> 
+        {% else %}
+        <div class = "no_orders_cont">
+            <p class = "no_orders_text">CART IS EMPTY</p>
+            <p>add the product to the cart</p>
+        </div>  
+        {% endif %}
+    </div>
+    <div class = "create_order_cont" style = "">
+        <div class = "product_name_text">Making an order</div>
+        <hr>
+        <form method="POST">
+            <div class="cont_order">
+                <div class="name">Contact information</div>
+                <div class="podname">Telephone</div>
+                <input type="text" id="telephone" name="telephone" placeholder = "+375" class = "numeric-plus-only" required/>
+                <div class="podname">Recipient (full name)</div>
+                <input type="text" id="fio" name="fio" class = "english-only" placeholder = "Sidorov Maxim Andreevich" required/>
+            </div>
+            <div class="cont_order">
+                <div class="name">Delivery</div>
+                <div class="order_city">
+                    <div class="podname">City</div>
+                    <div class="choose_city_cont">
+                        <input type="text" id="cityInput" name="cityInput" class = "english-only" placeholder="Minsk">
+                        <div id="cityContainer" class="city_container">
+                        </div>
+                    </div>
+                </div>
+                <div class="type_of_order_cont">
+                    <div id = "form_radio1" >
+                        <input id="radio1" type="radio" name="radio" value="1">
+                        <label>Delivery across the RB to the branch (Evropochta) <span class = "gray_text">from 4 days, 2.5$</span></label>
+                    </div>
+                    <div id = "form_radio2" >
+                        <input id="radio2" type="radio" name="radio" value="2">
+                        <label>Door-to-door delivery in the RB (Evropochta) <span class = "gray_text">from 4 days, 4.5$</span></label>
+                    </div>
+                    <div id = "form_radio3">
+                        <input id="radio3" type="radio" name="radio" value="3">
+                        <label>Worldwide shipping <span class = "gray_text">from 7 days, 7.5$</span></label>
+                    </div>
+                </div>
+                <div class="order_country">
+                    <div class="podname">Country</div>
+                    <input type="text" id="country" name="country" class = "english-only" placeholder = "Country of residence"/>
+                </div>
+                <div class="order_receiving_point">
+                    <div class="podname">Receiving point</div>
+                    <input type="text" id="receiving_point" name="receiving_point" placeholder = "Choose point" readonly/>
+                    <div class = "cont_receiving_point">
+                        {% for item in point %}
+                            <div class = "receiving_point_item">
+                                <span>№{{item.number}}, {{item.street}}</span>
+                                <span style = "font-size: 14px; color: rgb(132,132,132);">{{item.city}}</span>
+                            </div>  
+                        {% endfor %}    
+                    </div>
+                </div>
+                <div class="order_street">
+                    <div class="podname">Street</div>
+                    <input type="text" id="street" name="street" class = "english-only" />
+                </div>
+                <div class="order_house">
+                    <div class="podname">House</div>
+                    <input type="text" id="house" name="house" class = "numeric-eng"/>
+                </div>   
+                <div class="order_flat">
+                    <div class="podname">Flat</div>
+                    <input type="text" id="flat" name="flat" class = "numeric-eng"/>
+                </div>
+                <div class="podname">Comment</div>
+                <input type="text" id="coment" name="coment" placeholder = "Comment to order" class = "numeric-eng" />
+                <div class="podname">Promo code</div>
+                <input type="text" id="promocode" name="promocode" placeholder="If available" class = "numeric-eng"/>
+            </div>
+            <div class="total_cost_cont">
+                <div><span>The amount: </span>{{all_cart_price}}$</div>
+                <div class = "dbE"><span>Delivery across the RB to the branch (Evropochta): </span>2,5$</div>
+                <div class = "ddE"><span>Door-to-door delivery in the RB (Evropochta): </span>4,5$</div>
+                <div class = "wws"><span>World wide shipping: </span>7,5$</div>
+                <div class = "ttam_dbE"><span>The total amount: </span>{{ttam_dbE}}$</div>
+                <div class = "ttam_ddE"><span>The total amount: </span>{{ttam_ddE}}$</div>
+                <div class = "ttam_wws"><span>The total amount: </span>{{ttam_wws}}$</div>
+            </div>
+            {% for item in items %}
+                <input type="hidden" id="tovar_name" name="tovar_name" value="{{ item.tovar_name }}">
+                <input type="hidden" id="tovar_quantity" name="tovar_quantity" value="{{ item.quantity }}">
+            {% endfor %}
+            {%if items_count != 0 %}
+                <button type="submit" class="blue_buttom">Place an order</button>
+            {%else%}
+                <button type="submit" class="no_tems_button" disabled>Add at least one item to your cart</button >
+            {%endif%}
+        </form>
+    </div>
+</div>
+{% endblock %}
+
